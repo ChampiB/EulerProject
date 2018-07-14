@@ -11,5 +11,5 @@ object problem_003 extends App {
       }
     }
   }
-  println(s"Result = ${prime_factors.mkString("[", ", ", "]")}");
+  println(s"Result = ${prime_factors.last}")
 }
