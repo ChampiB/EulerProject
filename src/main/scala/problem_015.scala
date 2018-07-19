@@ -1,10 +1,15 @@
-import helper.MathHelper
-
 object problem_015 extends App {
-  val n = MathHelper.infinite_pow("2", "1000")
-  val result = n.map { c =>
-    val result = c - '0'
-    result.toLong
-  }.sum
-  println(s"Result = $result")
+  def count_number_of_route(x_start:Long, y_start:Long, width:Long, height:Long):Long = {
+    var result = 0L
+    if (x_start == width || y_start == height)
+      result = result + 1
+    else {
+      if (x_start + 1 != width || y_start != height)
+        result = result + count_number_of_route(x_start + 1, y_start, width, height)
+      if (x_start != width || y_start + 1 != height)
+        result = result + count_number_of_route(x_start, y_start + 1, width, height)
+    }
+    result
+  }
+  println(s"Result = ${count_number_of_route(0, 0, 20, 20)}")
 }
