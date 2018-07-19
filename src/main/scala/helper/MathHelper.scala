@@ -1,5 +1,6 @@
 package helper
 
+
 object MathHelper {
   def is_palindrome(n:Long):Boolean = n.toString == n.toString.reverse
   def is_pythagorean(a:Long, b:Long, c:Long):Boolean = Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)
@@ -38,5 +39,21 @@ object MathHelper {
   def get_triangle_number(index:Long):Long = {
     val values = for (i <- 1L to index) yield i
     values.sum
+  }
+  def infinite_add(n1:String, n2:String):String = {
+    var result = ""
+    var r = 0L
+    val rn1 = n1.reverse
+    val rn2 = n2.reverse
+    for (i <- 0 until (rn1.length max rn2.length)) {
+      val d1 = if (i < rn1.length) rn1.charAt(i).toLong - '0' else 0L
+      val d2 = if (i < rn2.length) rn2.charAt(i).toLong - '0' else 0L
+      result = s"${(d1 + d2 + r) % 10L}$result"
+      r = (d1 + d2 + r) / 10L
+    }
+    if (r != 0)
+      s"$r$result"
+    else
+      result
   }
 }
