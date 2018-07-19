@@ -1,6 +1,15 @@
-import helper.MathHelper
-
 object problem_014 extends App {
-  val lengths = for (i <- 1 to 1000000) yield MathHelper.get_collatz_sequence(i).length
-  println(s"Result = ${lengths.indexOf(lengths.max) + 1}")
+  def count_number_of_route(x_start:Long, y_start:Long, width:Long, height:Long):Long = {
+    var result = 0L
+    if (x_start == width || y_start == height)
+      result = result + 1
+    else {
+      if (x_start + 1 != width || y_start != height)
+        result = result + count_number_of_route(x_start + 1, y_start, width, height)
+      if (x_start != width || y_start + 1 != height)
+        result = result + count_number_of_route(x_start, y_start + 1, width, height)
+    }
+    result
+  }
+  println(s"Result = ${count_number_of_route(0, 0, 20, 20)}")
 }
