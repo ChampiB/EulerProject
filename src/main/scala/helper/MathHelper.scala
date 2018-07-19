@@ -56,6 +56,38 @@ object MathHelper {
     else
       result
   }
+  def infinite_mul(n1:String, n2:String):String = {
+    var result = "0"
+    val rn1 = n1.reverse
+    val rn2 = n2.reverse
+    for (i <- 0 until rn1.length) {
+      var tmp_result = ""
+      var r = 0L
+      val d1 = if (i < rn1.length) rn1.charAt(i).toLong - '0' else 0L
+      for (j <- 0 until rn2.length) {
+        val d2 = if (j < rn2.length) rn2.charAt(j).toLong - '0' else 0L
+        tmp_result = s"${(d1 * d2 + r) % 10L}$tmp_result"
+        r = (d1 * d2 + r) / 10L
+      }
+      if (r != 0) tmp_result = s"$r$tmp_result"
+      for (_ <- 0 until i) tmp_result = s"${tmp_result}0"
+      result = infinite_add(result, tmp_result)
+    }
+    result
+  }
+  def infinite_pow(n:String, power:String):String = {
+    if (power == "0") {
+      "1"
+    } else {
+      var result = n
+      var i = "1"
+      while (i != power) {
+        result = infinite_mul(result, n)
+        i = infinite_add(i, "1")
+      }
+      result
+    }
+  }
   def get_collatz_sequence(start:Long):Array[Long] = {
     var result = Array[Long](start)
     var n = start
