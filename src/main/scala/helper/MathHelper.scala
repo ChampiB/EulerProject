@@ -88,6 +88,19 @@ object MathHelper {
       result
     }
   }
+  def infinite_factorial(n:String):String = {
+    if (n == "0") {
+      "1"
+    } else {
+      var result = "1"
+      var i = "1"
+      while (i != n) {
+        result = infinite_mul(result, i)
+        i = infinite_add(i, "1")
+      }
+      result
+    }
+  }
   def get_collatz_sequence(start:Long):Array[Long] = {
     var result = Array[Long](start)
     var n = start
