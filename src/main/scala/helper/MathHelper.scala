@@ -56,4 +56,16 @@ object MathHelper {
     else
       result
   }
+  def get_collatz_sequence(start:Long):Array[Long] = {
+    var result = Array[Long](start)
+    var n = start
+    while (n != 1) {
+      n = if (n % 2 == 0)
+        n / 2
+      else
+        3 * n + 1
+      result = result ++ Array(n)
+    }
+    result
+  }
 }
