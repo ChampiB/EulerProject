@@ -2,6 +2,9 @@ package helper
 
 
 object MathHelper {
+  def is_abundant_number(n:Long):Boolean = n < get_divisors(n).sum - n
+  def is_perfect_number(n:Long):Boolean = n == get_divisors(n).sum - n
+  def is_deficient_number(n:Long):Boolean = n > get_divisors(n).sum - n
   def is_palindrome(n:Long):Boolean = n.toString == n.toString.reverse
   def is_pythagorean(a:Long, b:Long, c:Long):Boolean = Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)
   def is_prime(n:Long):Boolean = {
