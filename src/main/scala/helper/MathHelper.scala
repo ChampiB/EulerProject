@@ -10,13 +10,36 @@ object MathHelper {
     }
     !are_primes.contains(false)
   }
+  def is_right_truncatable_prime(n:Long):Boolean = {
+    var n_string = n.toString
+    val are_primes = for (_ <- 1 to n_string.length) yield {
+      val prime = is_prime(n_string.toLong)
+      n_string = n_string.dropRight(1)
+      prime
+    }
+    !are_primes.contains(false)
+  }
+  def is_left_truncatable_prime(n:Long):Boolean = {
+    var n_string = n.toString
+    val are_primes = for (_ <- 1 to n_string.length) yield {
+      val prime = is_prime(n_string.toLong)
+      n_string = n_string.drop(1)
+      prime
+    }
+    !are_primes.contains(false)
+  }
+  def is_truncatable_prime(n:Long):Boolean = {
+    is_right_truncatable_prime(n) && is_left_truncatable_prime(n)
+  }
   def is_abundant_number(n:Long):Boolean = n < get_divisors(n).sum - n
   def is_perfect_number(n:Long):Boolean = n == get_divisors(n).sum - n
   def is_deficient_number(n:Long):Boolean = n > get_divisors(n).sum - n
   def is_palindrome(n:Long):Boolean = n.toString == n.toString.reverse
   def is_pythagorean(a:Long, b:Long, c:Long):Boolean = Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)
   def is_prime(n:Long):Boolean = {
-    if (n == 2)
+    if (n == 1)
+      false
+    else if (n == 2)
       true
     else if (n % 2 == 0)
       false
