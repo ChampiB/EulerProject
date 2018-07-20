@@ -2,6 +2,14 @@ package helper
 
 
 object MathHelper {
+  def is_circular_prime(n:Long):Boolean = {
+    var n_string = n.toString
+    val are_primes = for (_ <- 1 to n_string.length) yield {
+      n_string = s"${n_string.drop(1)}${n_string(0)}"
+      is_prime(n_string.toLong)
+    }
+    !are_primes.contains(false)
+  }
   def is_abundant_number(n:Long):Boolean = n < get_divisors(n).sum - n
   def is_perfect_number(n:Long):Boolean = n == get_divisors(n).sum - n
   def is_deficient_number(n:Long):Boolean = n > get_divisors(n).sum - n
