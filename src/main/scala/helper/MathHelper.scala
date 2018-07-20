@@ -116,4 +116,16 @@ object MathHelper {
     }
     result
   }
+  def get_all_permutations(sequence:String):Array[String] = {
+    if (sequence.length == 1) {
+      Array(sequence(0).toString)
+    } else {
+      val permutations = for (i <- sequence.indices) yield {
+        val begin = if (i == 0) "" else sequence.take(i)
+        val end = if (i == sequence.length - 1) "" else sequence.takeRight(sequence.length - i - 1)
+        get_all_permutations(s"$begin$end").map{p => s"${sequence(i)}$p"}
+      }
+      permutations.flatten.toArray
+    }
+  }
 }
