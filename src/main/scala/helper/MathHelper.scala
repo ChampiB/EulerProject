@@ -90,51 +90,6 @@ object MathHelper {
     else
       result
   }
-  def infinite_mul(n1:String, n2:String):String = {
-    var result = "0"
-    val rn1 = n1.reverse
-    val rn2 = n2.reverse
-    for (i <- 0 until rn1.length) {
-      var tmp_result = ""
-      var r = 0L
-      val d1 = if (i < rn1.length) rn1.charAt(i).toLong - '0' else 0L
-      for (j <- 0 until rn2.length) {
-        val d2 = if (j < rn2.length) rn2.charAt(j).toLong - '0' else 0L
-        tmp_result = s"${(d1 * d2 + r) % 10L}$tmp_result"
-        r = (d1 * d2 + r) / 10L
-      }
-      if (r != 0) tmp_result = s"$r$tmp_result"
-      for (_ <- 0 until i) tmp_result = s"${tmp_result}0"
-      result = infinite_add(result, tmp_result)
-    }
-    result
-  }
-  def infinite_pow(n:String, power:String):String = {
-    if (power == "0") {
-      "1"
-    } else {
-      var result = n
-      var i = "1"
-      while (i != power) {
-        result = infinite_mul(result, n)
-        i = infinite_add(i, "1")
-      }
-      result
-    }
-  }
-  def infinite_factorial(n:String):String = {
-    if (n == "0") {
-      "1"
-    } else {
-      var result = "1"
-      var i = "0"
-      while (i != n) {
-        i = infinite_add(i, "1")
-        result = infinite_mul(result, i)
-      }
-      result
-    }
-  }
   def get_collatz_sequence(start:Long):Array[Long] = {
     var result = Array[Long](start)
     var n = start
@@ -163,5 +118,17 @@ object MathHelper {
     val n1_divisors = get_divisors(n1)
     val n2_divisors = get_divisors(n2)
     n1_divisors.filter{n => n2_divisors contains n}.map(_.toInt)
+  }
+  def convert_base_from_base_10(n:String, base_to:String):String = {
+    var result = ""
+    var nn = n
+    while (nn != "0") {
+      val index_base_to = InfiniteNumbersHelper.mod(nn, base_to.length.toString)
+      result = s"${base_to(index_base_to.toInt)}$result"
+      nn = InfiniteNumbersHelper.div(nn, base_to.length.toString)
+    }
+    while (result.length != 1 && result(0) == '0')
+      result = result drop 1
+    result
   }
 }
