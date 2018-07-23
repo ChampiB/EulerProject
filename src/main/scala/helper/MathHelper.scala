@@ -127,10 +127,10 @@ object MathHelper {
       "1"
     } else {
       var result = "1"
-      var i = "1"
+      var i = "0"
       while (i != n) {
-        result = infinite_mul(result, i)
         i = infinite_add(i, "1")
+        result = infinite_mul(result, i)
       }
       result
     }
@@ -158,5 +158,10 @@ object MathHelper {
       }
       permutations.flatten.toArray
     }
+  }
+  def get_common_divisors(n1:Int, n2:Int):Array[Int] = {
+    val n1_divisors = get_divisors(n1)
+    val n2_divisors = get_divisors(n2)
+    n1_divisors.filter{n => n2_divisors contains n}.map(_.toInt)
   }
 }
