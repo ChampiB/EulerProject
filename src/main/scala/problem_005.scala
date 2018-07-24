@@ -6,8 +6,11 @@ object problem_005 extends App {
         res = i % n
     res
   }
-  var i = 1
-  while (modulo(i, 1 to 20) != 0)
-    i = i + 1
-  println(s"Result = $i")
+  def run():String = {
+    var i = 1
+    while (modulo(i, 1 to 20) != 0)
+      i = i + 1
+    s"$i"
+  }
+  println(s"Result = ${run()}")
 }

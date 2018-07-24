@@ -37,7 +37,7 @@ object MathHelper {
   def is_palindrome(n:Long):Boolean = n.toString == n.toString.reverse
   def is_pythagorean(a:Long, b:Long, c:Long):Boolean = Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)
   def is_prime(n:Long):Boolean = {
-    if (n == 1)
+    if (n <= 1)
       false
     else if (n == 2)
       true
@@ -73,22 +73,6 @@ object MathHelper {
   def get_triangle_number(index:Long):Long = {
     val values = for (i <- 1L to index) yield i
     values.sum
-  }
-  def infinite_add(n1:String, n2:String):String = {
-    var result = ""
-    var r = 0L
-    val rn1 = n1.reverse
-    val rn2 = n2.reverse
-    for (i <- 0 until (rn1.length max rn2.length)) {
-      val d1 = if (i < rn1.length) rn1.charAt(i).toLong - '0' else 0L
-      val d2 = if (i < rn2.length) rn2.charAt(i).toLong - '0' else 0L
-      result = s"${(d1 + d2 + r) % 10L}$result"
-      r = (d1 + d2 + r) / 10L
-    }
-    if (r != 0)
-      s"$r$result"
-    else
-      result
   }
   def get_collatz_sequence(start:Long):Array[Long] = {
     var result = Array[Long](start)
@@ -127,7 +111,7 @@ object MathHelper {
       result = s"${base_to(index_base_to.toInt)}$result"
       nn = InfiniteNumbersHelper.div(nn, base_to.length.toString)
     }
-    while (result.length != 1 && result(0) == '0')
+    while (result.length != 1 && result(0) == base_to(0))
       result = result drop 1
     result
   }

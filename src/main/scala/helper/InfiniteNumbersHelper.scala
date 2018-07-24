@@ -1,5 +1,9 @@
 package helper
 
+/*
+** TODO: Handle negative numbers
+** TODO: Handle decimal numbers
+*/
 object InfiniteNumbersHelper {
   def is_palindrome(n:String):Boolean = {
     val result = for (i <- 0 to n.length / 2) yield n(i) == n(n.length - i - 1)
@@ -136,6 +140,8 @@ object InfiniteNumbersHelper {
       for (_ <- 0 until i) tmp_result = s"${tmp_result}0"
       result = add(result, tmp_result)
     }
+    while(result.length != 1 && result(0) == '0')
+      result = result drop 1
     result
   }
   def mod(n1:String, n2:String):String = {

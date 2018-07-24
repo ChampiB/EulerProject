@@ -7,5 +7,8 @@ object problem_006 extends App {
     val res = for (n <- numbers) yield Math.pow(n.toDouble, 2)
     res.sum.toLong
   }
-  println(s"Result = ${square_of_the_sum(1 to 100) - sum_of_the_square(1 to 100)}")
+  def run():String = {
+    s"${square_of_the_sum(1 to 100) - sum_of_the_square(1 to 100)}"
+  }
+  println(s"Result = ${run()}")
 }

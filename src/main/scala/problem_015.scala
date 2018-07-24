@@ -11,5 +11,8 @@ object problem_015 extends App {
     }
     result
   }
-  println(s"Result = ${count_number_of_route(0, 0, 20, 20)}")
+  def run():String = {
+    s"${count_number_of_route(0, 0, 20, 20)}"
+  }
+  println(s"Result = ${run()}")
 }
