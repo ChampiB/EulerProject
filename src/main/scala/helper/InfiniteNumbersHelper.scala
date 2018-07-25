@@ -123,6 +123,53 @@ object InfiniteNumbersHelper {
       result
     }
   }
+  def div(n1:String, n2:String, max_number_of_decimals:Long):String = {
+    // Basic check
+    if (is_equal(n2, "0"))
+      throw new Exception("[Error]: Can not divide by zero.")
+    // Integer part
+    var result = ""
+    var r = ""
+    var i = 0
+    while (i < n1.length) {
+      r = if (r != "0") s"$r${n1(i)}" else s"${n1(i)}"
+      if (is_inferior(r, n2)) {
+        result = s"${result}0"
+      } else {
+        var j = "1"
+        while (is_superior_or_equal(r, mul(n2, j)))
+          j = add(j, "1")
+        j = sub(j, "1")
+        r = sub(r, mul(n2, j))
+        result = s"$result$j"
+      }
+      i += 1
+    }
+    while (result.length != 1 && result(0) == '0')
+      result = result drop 1
+    // Decimal part
+    if (r != "0" && max_number_of_decimals > 0) {
+      result = s"$result."
+      i = 0
+      while (i < max_number_of_decimals) {
+        r = if (r == "0") "0" else s"${r}0"
+        if (is_inferior(r, n2)) {
+          result = s"${result}0"
+        } else {
+          var j = "1"
+          while (is_superior_or_equal(r, mul(n2, j)))
+            j = add(j, "1")
+          j = sub(j, "1")
+          r = sub(r, mul(n2, j))
+          result = s"$result$j"
+        }
+        i += 1
+      }
+      while (result(result.length - 1) == '0')
+        result = result dropRight 1
+    }
+    result
+  }
   def mul(n1:String, n2:String):String = {
     var result = "0"
     val rn1 = n1.reverse

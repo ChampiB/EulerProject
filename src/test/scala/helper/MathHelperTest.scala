@@ -125,6 +125,12 @@ class MathHelperTest extends FunSuite {
     for (divisor <- divisors) assert(answers.contains(divisor))
   }
 
+  test("MathHelper.get_recurring_cycle") {
+    assert(MathHelper.get_recurring_cycle("1", "3") == "3")
+    assert(MathHelper.get_recurring_cycle("2", "3") == "6")
+    assert(MathHelper.get_recurring_cycle("1", "7") == "142857")
+  }
+
   test("MathHelper.convert_base_from_base_10") {
     assert(MathHelper.convert_base_from_base_10("4", "01") == "100")
     assert(MathHelper.convert_base_from_base_10("4", "ab") == "baa")

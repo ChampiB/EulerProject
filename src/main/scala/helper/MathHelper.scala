@@ -103,6 +103,21 @@ object MathHelper {
     val n2_divisors = get_divisors(n2)
     n1_divisors.filter{n => n2_divisors contains n}.map(_.toInt)
   }
+  def get_recurring_cycle(n:String, d:String, max_number_of_decimals:Long = 10000 L):String = {
+    val r = InfiniteNumbersHelper.div(n, d, max_number_of_decimals)
+    val index = r.indexOf('.')
+    if (index != -1) {
+      val decimals = r.substring(index + 1, r.length)
+      var result = ""
+      for (i <- 1 to decimals.length / 2) {
+        if (decimals.substring(decimals.length - i, decimals.length) == decimals.substring(decimals.length - i * 2, decimals.length - i) && result == "")
+          result = decimals.substring(decimals.length - i, decimals.length)
+      }
+      result
+    } else {
+      ""
+    }
+  }
   def convert_base_from_base_10(n:String, base_to:String):String = {
     var result = ""
     var nn = n

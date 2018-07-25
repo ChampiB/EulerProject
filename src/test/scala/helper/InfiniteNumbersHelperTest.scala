@@ -57,11 +57,17 @@ class InfiniteNumbersHelperTest extends FunSuite {
   }
 
   test("InfiniteNumbersHelper.div") {
+    // Integer division
     assert(InfiniteNumbersHelper.div("2", "1") == "2")
     assert(InfiniteNumbersHelper.div("2", "2") == "1")
     assert(InfiniteNumbersHelper.div("3", "2") == "1")
     assert(InfiniteNumbersHelper.div("200", "2") == "100")
     assert(InfiniteNumbersHelper.div("41", "2") == "20")
+    // Decimal division
+    assert(InfiniteNumbersHelper.div("41", "2", 1) == "20.5")
+    assert(InfiniteNumbersHelper.div("41", "2", 2) == "20.5")
+    assert(InfiniteNumbersHelper.div("1", "3", 5) == "0.33333")
+    assert(InfiniteNumbersHelper.div("4", "3", 5) == "1.33333")
   }
 
   test("InfiniteNumbersHelper.mul") {
