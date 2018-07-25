@@ -103,7 +103,7 @@ object MathHelper {
     val n2_divisors = get_divisors(n2)
     n1_divisors.filter{n => n2_divisors contains n}.map(_.toInt)
   }
-  def get_recurring_cycle(n:String, d:String, max_number_of_decimals:Long = 10000 L):String = {
+  def get_recurring_cycle(n:String, d:String, max_number_of_decimals:Long = 10000L):String = {
     val r = InfiniteNumbersHelper.div(n, d, max_number_of_decimals)
     val index = r.indexOf('.')
     if (index != -1) {
@@ -113,7 +113,16 @@ object MathHelper {
         if (decimals.substring(decimals.length - i, decimals.length) == decimals.substring(decimals.length - i * 2, decimals.length - i) && result == "")
           result = decimals.substring(decimals.length - i, decimals.length)
       }
-      result
+      if (result.length != 0) {
+        val indexes = for (_ <- 0 to result.length) yield {
+          result = s"${result.last}${result.dropRight(1)}"
+          val index = decimals.indexOf(result)
+          if (index != -1) index else decimals.length
+        }
+        decimals.substring(indexes.min, indexes.min + result.length)
+      } else {
+        result
+      }
     } else {
       ""
     }
