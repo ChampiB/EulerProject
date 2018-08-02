@@ -3,6 +3,18 @@ package helper
 import org.scalatest.FunSuite
 
 class MathHelperTest extends FunSuite {
+  test("MathHelper.is_composite_number") {
+    assert(MathHelper.is_composite_number(16))
+    assert(MathHelper.is_composite_number(18))
+    assert(MathHelper.is_composite_number(20))
+    assert(MathHelper.is_composite_number(21))
+    assert(MathHelper.is_composite_number(22))
+    assert(!MathHelper.is_composite_number(17))
+    assert(!MathHelper.is_composite_number(13))
+    assert(!MathHelper.is_composite_number(7))
+    assert(!MathHelper.is_composite_number(2))
+  }
+
   test("MathHelper.is_triangle_number") {
     assert(MathHelper.is_triangle_number(1))
     assert(MathHelper.is_triangle_number(3))

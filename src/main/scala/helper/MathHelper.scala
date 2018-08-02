@@ -2,6 +2,9 @@ package helper
 
 
 object MathHelper {
+  def is_composite_number(n:Long):Boolean = {
+    (2L until n) exists (n % _ == 0L)
+  }
   def is_triangle_number(n:Long):Boolean = {
     var i = 1
     var pi = get_triangle_number(i)
