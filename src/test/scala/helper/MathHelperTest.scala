@@ -3,20 +3,52 @@ package helper
 import org.scalatest.FunSuite
 
 class MathHelperTest extends FunSuite {
-  test("MathHelper.is_pentagonal") {
-    assert(MathHelper.is_pentagonal(22))
-    assert(MathHelper.is_pentagonal(145))
-    assert(!MathHelper.is_pentagonal(144))
-    assert(!MathHelper.is_pentagonal(23))
-    assert(!MathHelper.is_pentagonal(26))
+  test("MathHelper.is_triangle_number") {
+    assert(MathHelper.is_triangle_number(1))
+    assert(MathHelper.is_triangle_number(3))
+    assert(MathHelper.is_triangle_number(6))
+    assert(MathHelper.is_triangle_number(10))
+    assert(MathHelper.is_triangle_number(15))
+    assert(!MathHelper.is_triangle_number(2))
+    assert(!MathHelper.is_triangle_number(5))
+    assert(!MathHelper.is_triangle_number(16))
   }
 
-  test("MathHelper.get_pentagonal") {
-    assert(MathHelper.get_pentagonal(1) == 1)
-    assert(MathHelper.get_pentagonal(2) == 5)
-    assert(MathHelper.get_pentagonal(3) == 12)
-    assert(MathHelper.get_pentagonal(4) == 22)
-    assert(MathHelper.get_pentagonal(5) == 35)
+  test("MathHelper.is_pentagonal_number") {
+    assert(MathHelper.is_pentagonal_number(22))
+    assert(MathHelper.is_pentagonal_number(145))
+    assert(!MathHelper.is_pentagonal_number(144))
+    assert(!MathHelper.is_pentagonal_number(23))
+    assert(!MathHelper.is_pentagonal_number(26))
+  }
+
+  test("MathHelper.is_hexagonal_number") {
+    assert(MathHelper.is_hexagonal_number(1))
+    assert(MathHelper.is_hexagonal_number(6))
+    assert(MathHelper.is_hexagonal_number(15))
+    assert(MathHelper.is_hexagonal_number(28))
+    assert(MathHelper.is_hexagonal_number(45))
+    assert(!MathHelper.is_hexagonal_number(2))
+    assert(!MathHelper.is_hexagonal_number(5))
+    assert(!MathHelper.is_hexagonal_number(17))
+    assert(!MathHelper.is_hexagonal_number(30))
+    assert(!MathHelper.is_hexagonal_number(46))
+  }
+
+  test("MathHelper.get_hexagonal_number") {
+    assert(MathHelper.get_hexagonal_number(1) == 1)
+    assert(MathHelper.get_hexagonal_number(2) == 6)
+    assert(MathHelper.get_hexagonal_number(3) == 15)
+    assert(MathHelper.get_hexagonal_number(4) == 28)
+    assert(MathHelper.get_hexagonal_number(5) == 45)
+  }
+
+  test("MathHelper.get_pentagonal_number") {
+    assert(MathHelper.get_pentagonal_number(1) == 1)
+    assert(MathHelper.get_pentagonal_number(2) == 5)
+    assert(MathHelper.get_pentagonal_number(3) == 12)
+    assert(MathHelper.get_pentagonal_number(4) == 22)
+    assert(MathHelper.get_pentagonal_number(5) == 35)
   }
 
   test("MathHelper.is_circular_prime") {

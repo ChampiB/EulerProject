@@ -2,12 +2,30 @@ package helper
 
 
 object MathHelper {
-  def is_pentagonal(n:Long):Boolean = {
+  def is_triangle_number(n:Long):Boolean = {
     var i = 1
-    var pi = i * (3 * i - 1) / 2
+    var pi = get_triangle_number(i)
     while (pi < n) {
       i += 1
-      pi = i * (3 * i - 1) / 2
+      pi = get_triangle_number(i)
+    }
+    pi == n
+  }
+  def is_pentagonal_number(n:Long):Boolean = {
+    var i = 1
+    var pi = get_pentagonal_number(i)
+    while (pi < n) {
+      i += 1
+      pi = get_pentagonal_number(i)
+    }
+    pi == n
+  }
+  def is_hexagonal_number(n:Long):Boolean = {
+    var i = 1
+    var pi = get_hexagonal_number(i)
+    while (pi < n) {
+      i += 1
+      pi = get_hexagonal_number(i)
     }
     pi == n
   }
@@ -79,10 +97,6 @@ object MathHelper {
     }
     divisors
   }
-  def get_triangle_number(index:Long):Long = {
-    val values = for (i <- 1L to index) yield i
-    values.sum
-  }
   def get_collatz_sequence(start:Long):Array[Long] = {
     var result = Array[Long](start)
     var n = start
@@ -136,8 +150,14 @@ object MathHelper {
       ""
     }
   }
-  def get_pentagonal(i:Long):Long = {
+  def get_triangle_number(i:Long):Long = {
+    i * (i + 1) / 2
+  }
+  def get_pentagonal_number(i:Long):Long = {
     i * (3 * i - 1) / 2
+  }
+  def get_hexagonal_number(i:Long):Long = {
+    i * (2 * i - 1)
   }
   def convert_base_from_base_10(n:String, base_to:String):String = {
     var result = ""
