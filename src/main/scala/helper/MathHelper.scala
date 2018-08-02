@@ -2,6 +2,15 @@ package helper
 
 
 object MathHelper {
+  def is_pentagonal(n:Long):Boolean = {
+    var i = 1
+    var pi = i * (3 * i - 1) / 2
+    while (pi < n) {
+      i += 1
+      pi = i * (3 * i - 1) / 2
+    }
+    pi == n
+  }
   def is_circular_prime(n:Long):Boolean = {
     var n_string = n.toString
     val are_primes = for (_ <- 1 to n_string.length) yield {
@@ -126,6 +135,9 @@ object MathHelper {
     } else {
       ""
     }
+  }
+  def get_pentagonal(i:Long):Long = {
+    i * (3 * i - 1) / 2
   }
   def convert_base_from_base_10(n:String, base_to:String):String = {
     var result = ""

@@ -3,6 +3,22 @@ package helper
 import org.scalatest.FunSuite
 
 class MathHelperTest extends FunSuite {
+  test("MathHelper.is_pentagonal") {
+    assert(MathHelper.is_pentagonal(22))
+    assert(MathHelper.is_pentagonal(145))
+    assert(!MathHelper.is_pentagonal(144))
+    assert(!MathHelper.is_pentagonal(23))
+    assert(!MathHelper.is_pentagonal(26))
+  }
+
+  test("MathHelper.get_pentagonal") {
+    assert(MathHelper.get_pentagonal(1) == 1)
+    assert(MathHelper.get_pentagonal(2) == 5)
+    assert(MathHelper.get_pentagonal(3) == 12)
+    assert(MathHelper.get_pentagonal(4) == 22)
+    assert(MathHelper.get_pentagonal(5) == 35)
+  }
+
   test("MathHelper.is_circular_prime") {
     assert(MathHelper.is_circular_prime(73))
     assert(MathHelper.is_circular_prime(71))
