@@ -3,6 +3,13 @@ package helper
 import org.scalatest.FunSuite
 
 class MathHelperTest extends FunSuite {
+  test("MathHelper.are_permutations") {
+    assert(MathHelper.are_permutations(Array("12", "21")))
+    assert(MathHelper.are_permutations(Array("123", "321")))
+    assert(!MathHelper.are_permutations(Array("123", "341")))
+    assert(MathHelper.are_permutations(Array("143", "341")))
+  }
+
   test("MathHelper.is_composite_number") {
     assert(MathHelper.is_composite_number(16))
     assert(MathHelper.is_composite_number(18))

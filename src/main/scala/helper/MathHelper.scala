@@ -2,6 +2,14 @@ package helper
 
 
 object MathHelper {
+  def are_permutations(a:Array[String]):Boolean = {
+    val array = for (i <- 0 until a.length - 1) yield {
+      var tmp = a(i + 1)
+      for (c <- a(i)) tmp = tmp.replaceFirst(s"$c", "")
+      tmp.length == 0
+    }
+    !array.contains(false) && a.map(_.length == a(0).length).reduce(_ && _)
+  }
   def is_composite_number(n:Long):Boolean = {
     (2L until n) exists (n % _ == 0L)
   }
