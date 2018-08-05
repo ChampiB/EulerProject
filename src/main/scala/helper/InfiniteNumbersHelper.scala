@@ -220,4 +220,10 @@ object InfiniteNumbersHelper {
       result
     }
   }
+  def among(k:String, n:String, factorials:Array[String] = null):String = {
+    if (factorials == null)
+      div(factorial(n), mul(factorial(k), factorial(sub(n, k))))
+    else
+      div(factorials(n.toInt), mul(factorials(k.toInt), factorials(sub(n, k).toInt)))
+  }
 }
